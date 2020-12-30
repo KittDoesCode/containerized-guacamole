@@ -7,7 +7,7 @@ This Docker Compose setup makes it very easy (only 3 cli commands) to run [Apach
 ## Unique Features
 
 * Unlike other solutions this setup is much simpler to setup and is inline with docker/docker-compse best practice.
-* Here we use official Apache Guacamole Docker Images [guacamole/guacamole:latest](https://hub.docker.com/r/guacamole/) always up to date.
+* Utilize oznu/guacamole combined Guacamole container.
 * Automatically created and configured Nginx Reverse Proxy in front of the Guacamole Service.
 * TLS encrypted traffic with Let's Encrypt for your public domain.
 * Minimal configuration of only *two* mandatory environment variables.
@@ -17,28 +17,16 @@ This Docker Compose setup makes it very easy (only 3 cli commands) to run [Apach
 Before you start the service, define three mandatory variables.
 The easiest way is to create a `.env` file in your working directory eg.:
 
-### Step 1 - Define your Domain and DB Password
+### Step 1 - Define your Domain:
 
 ```ini
-cut > .env <<EOF
-POSTGRES_PASSWORD=*****
-VIRTUAL_HOST=workshop.8gears.com
+cat > .env <<EOF
+VIRTUAL_HOST=workshop.domain.com
 LETSENCRYPT_EMAIL=user@domain.com
 EOF
 ```
 
-### Step 2 - Populate DB
-Copy the `docker-compose.yml` from this repository to your computer.
-
-Run the service `init-guac-db` once before starting all other services. This one off job will export the application database schema so Postgres can pick it up when it starts and initialize the database with values and schema for Guacamole.
-
-```
-docker-compose up init-guac-db
-```
-The job should start and terminate after the schema is created:
-
-
-### Step 3 - Start Guacamole and other Services:
+### Step 2 - Start Guacamole and other Services:
 
 Finally we can start Guacamole.
 
@@ -46,5 +34,6 @@ Finally we can start Guacamole.
 docker-compose up -d
 ```
 
-Now go to your application https://workshop.domain.org/guacamole and login as guacadmin/guacadmin. 
-Don't forget to change the password in the next step.
+Now go to your application https://workshop.domain.com and login as guacadmin/guacadmin. 
+Don't forget to change the password in the next step. You'll be prompted to set up 2FA
+upon login as well.
