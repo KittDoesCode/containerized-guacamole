@@ -6,7 +6,7 @@ This Docker Compose setup makes it very easy (only two cli commands) to run [Apa
 
 ## Unique Features
 
-* Unlike other solutions this setup is much simpler to setup and is inline with docker/docker-compse best practice.
+* Unlike other solutions this setup is much simpler to setup and is inline with docker/docker-compose best practice.
 * Utilize oznu/guacamole combined Guacamole container.
 * Automatically created and configured Nginx Reverse Proxy in front of the Guacamole Service.
 * TLS encrypted traffic with Let's Encrypt for your public domain.
