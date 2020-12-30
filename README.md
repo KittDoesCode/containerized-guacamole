@@ -21,7 +21,7 @@ The easiest way is to create a `.env` file in your working directory eg.:
 
 ```ini
 cat > .env <<EOF
-VIRTUAL_HOST=workshop.domain.com
+VIRTUAL_HOST=guacamole.domain.com
 LETSENCRYPT_EMAIL=user@domain.com
 EOF
 ```
@@ -34,6 +34,19 @@ Finally we can start Guacamole.
 docker-compose up -d
 ```
 
-Now go to your application https://workshop.domain.com and login as guacadmin/guacadmin. 
+### Step 3 - Optionally change the TOTP issuer name:
+
+The TOTP issuer, the name in the 2FA/MFA app initially associated with the token, can be
+changed. If you leave it as-is then it says "Apache Guacamole."
+
+```sh
+vi /var/lib/docker/volumes/rancher_guacconfig/_data/guacamole/guacamole.properties
+```
+Then add a line like this:
+```sh
+totp-issuer: My Guacamole Name
+```
+
+Now go to your application https://guacamole.domain.com and login as guacadmin/guacadmin. 
 Don't forget to change the password in the next step. You'll be prompted to set up 2FA
 upon login as well.
